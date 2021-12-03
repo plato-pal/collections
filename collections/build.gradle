@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+    id 'eclipse'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.codehaus.groovy:groovy:3.0.7'
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation 'com.google.guava:guava:30.1-jre'
+}
+
+eclipse {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+application {
+    mainClass = 'collections.App'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
