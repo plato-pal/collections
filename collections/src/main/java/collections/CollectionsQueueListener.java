@@ -16,6 +16,11 @@ public class CollectionsQueueListener {
 			String strMessage = new String(delivery.getBody(), StandardCharsets.UTF_8);
 			CollectionsNewPolicyMessage incomingMessage = OBJECT_MAPPER.readValue(strMessage, CollectionsNewPolicyMessage.class);
 			System.out.println(String.format("Received: %s", incomingMessage.toString()));
+			
+			StoreReceivable storeReceivable = 
+					new StoreReceivable(incomingMessage.getPolicyNumber(), incomingMessage.getPolicyCost());
+			storeReceivable.doStore();
+			System.out.println(String.format("Stored: %s", incomingMessage.toString()));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
